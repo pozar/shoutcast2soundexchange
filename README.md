@@ -23,4 +23,8 @@ The mapping looks like this for the Soundexchange required columns:
 * "Referrer"/Client Player  
   Shoutcast: cs(User-Agent)
   
-You will need to update the timezone and the station call letters in the script.
+You will need to update the timezone and the station call letters in the script.  The output is tab delimited format that SoundExchange requires.
+
+Typically you would run it as:
+shout2se.py sc_w3c-kxxx.log	> soundexchange.log
+
