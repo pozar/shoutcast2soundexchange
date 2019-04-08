@@ -8,19 +8,19 @@ It assumes that the shoutcast fields are in this order:
 c-ip c-dns date time cs-uri-stem c-status cs(User-Agent) sc-bytes x-duration avgbandwidth
 
 The mapping looks like this for the Soundexchange required columns:
-• "IP address" (#.#.#.#; Do NOT include port numbers (127.0.0.1:3600))
+* "IP address" (#.#.#.#; Do NOT include port numbers (127.0.0.1:3600))
   Shoutcast: c-ip
-• "Date" listener tuned in (YYYY-MM-DD)
+* "Date" listener tuned in (YYYY-MM-DD)
   Shoutcast: date (but must be converted to UTC)
-• "Time" listener tuned in (HH:MM:SS; 24-hour military time; UTC time zone)
+* "Time" listener tuned in (HH:MM:SS; 24-hour military time; UTC time zone)
   Shoutcast: time (but must be converted to UTC)
-• "Stream" ID (No spaces)
+* "Stream" ID (No spaces)
   Station Call Letters
-• "Duration" of listening (Seconds)
+* "Duration" of listening (Seconds)
   Shoutcast: x-duration
-• HTTP "Status" Code
+* HTTP "Status" Code
   Shoutcast: c-status
-• "Referrer"/Client Player  
+* "Referrer"/Client Player  
   Shoutcast: cs(User-Agent)
   
 You will need to update the timezone and the station call letters in the script.
