@@ -1,5 +1,5 @@
 # shoutcast2soundexchange
-A script to convert shoutcast sc_w3c logs to what SoundExchange needs
+A Python cript to convert shoutcast sc_w3c logs to what SoundExchange needs
 
 This is based on what is described at:
 https://digitalservices.npr.org/post/soundexchange-streaming-file-format-standard-announced
