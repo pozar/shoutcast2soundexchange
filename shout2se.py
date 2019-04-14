@@ -27,10 +27,10 @@ localtz = 'America/Los_Angeles'
 
 total = len(sys.argv)
 if total < 2:
-    print "I need a file name on the command line"
+    print("I need a file name on the command line")
     quit()
 
-print "IP Address\tDate\tTime\tStream\tDuration\tStatus\tReferrer"
+print("IP Address\tDate\tTime\tStream\tDuration\tStatus\tReferrer")
 with open(sys.argv[1], "r") as infile:
     for line in infile:
         li=line.strip()
