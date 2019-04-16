@@ -1,5 +1,5 @@
 # shoutcast2soundexchange
-A Python script to convert shoutcast sc_w3c logs to what SoundExchange needs
+A Python script to convert shoutcast sc_w3c* logs to what SoundExchange needs
 
 This is based on what is described at:
 https://digitalservices.npr.org/post/soundexchange-streaming-file-format-standard-announced
@@ -28,4 +28,8 @@ You will need to update the timezone and the station call letters in the script.
 Typically you would run it as:
 
 shout2se.py sc_w3c-kxxx.log	> soundexchange.log
+
+You will need to install the pytz module.  This is typically done by running "pip install pytz".  pytz does the conversion from localtime to UTC that SoundExchange needs.
+
+This should run on Unix variants and Mac from a terminal window.  If you are using Windows, follow these instructions... https://edu.google.com/openonline/course-builder/docs/1.10/set-up-course-builder/check-for-python.html#windows
 
