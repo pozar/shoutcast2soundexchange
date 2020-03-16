@@ -5,11 +5,11 @@ import pytz
 import sys
 import socket
 
-callsign = 'KXYZ'
+callsign = 'KXXX'
 localtz = 'America/Los_Angeles'
 # Shoutcast logs look like:
 # Fields: c-ip c-dns date time cs-uri-stem c-status cs(User-Agent) sc-bytes x-duration avgbandwidth
-
+#
 # Soundexchange Required Columns:
 # * "IP address" (#.#.#.#; Do NOT include port numbers (127.0.0.1:3600))
 #   Shoutcast: c-ip
@@ -28,10 +28,10 @@ localtz = 'America/Los_Angeles'
 
 total = len(sys.argv)
 if total < 2:
-    print ("I need a file name on the command line")
+    print("I need a file name on the command line")
     quit()
 
-print ("IP Address\tDate\tTime\tStream\tDuration\tStatus\tReferrer")
+print("IP Address\tDate\tTime\tStream\tDuration\tStatus\tReferrer")
 with open(sys.argv[1], "r") as infile:
     for line in infile:
         li=line.strip()
