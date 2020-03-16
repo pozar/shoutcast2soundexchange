@@ -9,7 +9,7 @@ callsign = 'KXYZ'
 localtz = 'America/Los_Angeles'
 # Shoutcast logs look like:
 # Fields: c-ip c-dns date time cs-uri-stem c-status cs(User-Agent) sc-bytes x-duration avgbandwidth
-# 
+
 # Soundexchange Required Columns:
 # * "IP address" (#.#.#.#; Do NOT include port numbers (127.0.0.1:3600))
 #   Shoutcast: c-ip
@@ -54,6 +54,7 @@ with open(sys.argv[1], "r") as infile:
                 # Transform the time to UTC
                 d = d.astimezone(pytz.utc)
                 print(ipaddr + '\t' + d.strftime("%Y-%m-%d\t%H:%M:%S") + '\t' + callsign + '\t' + duration + '\t' + status + '\t' + referrer)
+
             except socket.error:
                 # No IP address on this line.  Skip it.
                 pass
