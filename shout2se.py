@@ -3,8 +3,9 @@
 import datetime
 import pytz
 import sys
+import socket
 
-callsign = 'KXXX'
+callsign = 'KXYZ'
 localtz = 'America/Los_Angeles'
 # Shoutcast logs look like:
 # Fields: c-ip c-dns date time cs-uri-stem c-status cs(User-Agent) sc-bytes x-duration avgbandwidth
@@ -27,27 +28,32 @@ localtz = 'America/Los_Angeles'
 
 total = len(sys.argv)
 if total < 2:
-    print("I need a file name on the command line")
+    print ("I need a file name on the command line")
     quit()
 
-print("IP Address\tDate\tTime\tStream\tDuration\tStatus\tReferrer")
+print ("IP Address\tDate\tTime\tStream\tDuration\tStatus\tReferrer")
 with open(sys.argv[1], "r") as infile:
     for line in infile:
         li=line.strip()
         if not li.startswith("#"):
             foo = li.split(" ")
             ipaddr = foo[0]
-            date = foo[2]
-            time = foo[3]
-            status = foo[5]
-            referrer = foo[6]
-            duration = foo[8]
-            timestring = date + 'T' + time + 'Z'
-            # Create datetime object
-            d = datetime.datetime.strptime(timestring, "%Y-%m-%dT%H:%M:%SZ")
-            # Set the time zone 
-            d = pytz.timezone(localtz).localize(d)
-            # Transform the time to UTC
-            d = d.astimezone(pytz.utc)
-            print(ipaddr + '\t' + d.strftime("%Y-%m-%d\t%H:%M:%S") + '\t' + callsign + '\t' + duration + '\t' + status + '\t' + referrer)
-
+            try:
+                # Check for a valid IP address
+                socket.inet_aton(ipaddr)
+                date = foo[2]
+                time = foo[3]
+                status = foo[5]
+                referrer = foo[6]
+                duration = foo[8]
+                timestring = date + 'T' + time + 'Z'
+                # Create datetime object
+                d = datetime.datetime.strptime(timestring, "%Y-%m-%dT%H:%M:%SZ")
+                # Set the time zone 
+                d = pytz.timezone(localtz).localize(d)
+                # Transform the time to UTC
+                d = d.astimezone(pytz.utc)
+                print(ipaddr + '\t' + d.strftime("%Y-%m-%d\t%H:%M:%S") + '\t' + callsign + '\t' + duration + '\t' + status + '\t' + referrer)
+            except socket.error:
+                # No IP address on this line.  Skip it.
+                pass
